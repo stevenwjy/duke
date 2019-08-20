@@ -4,12 +4,12 @@ import java.util.ArrayList;
 public class Duke {
     private static InputReader inputReader;
     private static OutputWriter outputWriter;
-    private static List<Task> tasks;
+    private static TaskManager taskManager;
 
     public static void main(String[] args) {
         inputReader = new InputReader();
         outputWriter = new OutputWriter();
-        tasks = new ArrayList<Task>();
+        taskManager = new TaskManager();
 
         run();
     }
@@ -24,12 +24,18 @@ public class Duke {
     }
 
     private static void handleCommand(String command) {
-        switch (command) {
+        String[] commandParts = command.split(" ", 2);
+        switch (commandParts[0]) {
             case "list":
-                outputWriter.printTasks(tasks);
+                outputWriter.printTasks(taskManager.getTasks());
+                break;
+            case "done":
+                int taskNumber = Integer.parseInt(commandParts[1]);
+                taskManager.markAsDone(taskNumber);
+                outputWriter.printTaskDone(taskManager.getTask(taskNumber));
                 break;
             default:
-                tasks.add(new Task(command));
+                taskManager.addTask(new Task(command));
                 outputWriter.print("added: " + command);
                 break;
         }
