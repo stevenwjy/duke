@@ -13,8 +13,8 @@ class InputReader {
     }
 
     private void refreshBuffer() {
-        if (!buffer.isPresent() && scanner.hasNext()) {
-            String command = scanner.next();
+        if (!buffer.isPresent() && scanner.hasNextLine()) {
+            String command = scanner.nextLine();
             if (!command.equals(byeCommand)) {
                 buffer = Optional.of(command);
             }
