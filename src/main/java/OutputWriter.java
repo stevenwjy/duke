@@ -1,3 +1,5 @@
+import java.util.List;
+
 class OutputWriter {
     private static String line = "    ____________________________________________________________";
     private static String header = "Hello! I'm Duke\n" + "     What can I do for you?";
@@ -16,9 +18,19 @@ class OutputWriter {
         System.out.println(line);
     }
 
-    void handleCommand(String command) {
+    void print(String s) {
         System.out.println(line);
-        System.out.println(tab + command);
+        System.out.println(tab + s);
+        System.out.println(line);
+    }
+
+    void printTasks(List<Task> tasks) {
+        System.out.println(line);
+        int number = 1;
+        for (Task task : tasks) {
+            System.out.printf("%s%d. %s\n", tab, number, task);
+            number += 1;
+        }
         System.out.println(line);
     }
 }
