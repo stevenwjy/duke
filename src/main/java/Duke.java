@@ -1,10 +1,20 @@
 public class Duke {
+    private static InputReader inputReader;
+    private static OutputWriter outputWriter;
+
     public static void main(String[] args) {
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n" + logo);
+        inputReader = new InputReader();
+        outputWriter = new OutputWriter();
+
+        run();
+    }
+
+    private static void run() {
+        outputWriter.printHeader();
+        while (inputReader.hasNextCommand()) {
+            String command = inputReader.nextCommand();
+            outputWriter.handleCommand(command);
+        }
+        outputWriter.printFooter();
     }
 }
