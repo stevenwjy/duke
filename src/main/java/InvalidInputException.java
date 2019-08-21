@@ -1,6 +1,7 @@
 public final class InvalidInputException extends RuntimeException {
     public enum Code {
         EMPTY_DONE_DESCRIPTION,
+        EMPTY_DELETE_DESCRIPTION,
         INVALID_TASK_NUMBER,
         EMPTY_DEADLINE_DESCRIPTION,
         MISSING_DEADLINE_PARAMETER,
@@ -20,6 +21,8 @@ public final class InvalidInputException extends RuntimeException {
         switch (code) {
             case EMPTY_DONE_DESCRIPTION:
                 return "☹ OOPS!!! You must provide a task number for 'done' command!";
+            case EMPTY_DELETE_DESCRIPTION:
+                return "☹ OOPS!!! You must provide a task number for 'delete' command!";
             case INVALID_TASK_NUMBER:
                 return "☹ OOPS!!! You entered an invalid task number!";
             case EMPTY_DEADLINE_DESCRIPTION:

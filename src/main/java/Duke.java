@@ -1,7 +1,4 @@
-import tasks.TaskManager;
-import tasks.Event;
-import tasks.Deadline;
-import tasks.ToDo;
+import tasks.*;
 
 public class Duke {
     private static InputReader inputReader;
@@ -41,6 +38,19 @@ public class Duke {
                         int taskNumber = Integer.parseInt(commandParts[1]);
                         taskManager.markAsDone(taskNumber);
                         outputWriter.notifyTaskDone(taskManager.getTask(taskNumber));
+                    } catch (Exception e) {
+                        throw new InvalidInputException(InvalidInputException.Code.INVALID_TASK_NUMBER);
+                    }
+                    break;
+                case "delete":
+                    if (commandParts.length < 2) {
+                        throw new InvalidInputException(InvalidInputException.Code.EMPTY_DELETE_DESCRIPTION);
+                    }
+
+                    try {
+                        int taskNumber = Integer.parseInt(commandParts[1]);
+                        Task removedTask = taskManager.removeTask(taskNumber);
+                        outputWriter.notifyRemoveTask(removedTask, taskManager.getNumberOfTasks());
                     } catch (Exception e) {
                         throw new InvalidInputException(InvalidInputException.Code.INVALID_TASK_NUMBER);
                     }

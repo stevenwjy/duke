@@ -1,5 +1,6 @@
-import java.util.List;
 import tasks.Task;
+
+import java.util.List;
 
 class OutputWriter {
     private static String line = "    ____________________________________________________________";
@@ -33,6 +34,14 @@ class OutputWriter {
     void notifyAddTask(Task task, int numberOfTasks) {
         System.out.println(line);
         System.out.println(tab + "Got it. I've added this task:");
+        System.out.println(tab + "  " + task);
+        System.out.printf("%sNow you have %d tasks in the list.\n", tab, numberOfTasks);
+        System.out.println(line);
+    }
+
+    void notifyRemoveTask(Task task, int numberOfTasks) {
+        System.out.println(line);
+        System.out.println(tab + "Noted. I've removed this task:");
         System.out.println(tab + "  " + task);
         System.out.printf("%sNow you have %d tasks in the list.\n", tab, numberOfTasks);
         System.out.println(line);
