@@ -1,8 +1,12 @@
-public class Task {
+package tasks;
+
+public abstract class Task {
+    protected TaskType type;
     protected String description;
     protected boolean isDone;
 
-    public Task(String description) {
+    Task(TaskType type, String description) {
+        this.type = type;
         this.description = description;
         this.isDone = false;
     }
@@ -15,8 +19,10 @@ public class Task {
         return (isDone ? "\u2713" : "\u2718"); //return tick or X symbols
     }
 
+    abstract String getAdditionalDescription();
+
     @Override
     public String toString() {
-        return "[" + getStatusIcon() + "] " + description;
+        return "[" + type.getTaskIcon() + "][" + getStatusIcon() + "] " + description + getAdditionalDescription();
     }
 }

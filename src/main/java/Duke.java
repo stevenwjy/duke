@@ -1,5 +1,7 @@
-import java.util.List;
-import java.util.ArrayList;
+import tasks.TaskManager;
+import tasks.Event;
+import tasks.Deadline;
+import tasks.ToDo;
 
 public class Duke {
     private static InputReader inputReader;
@@ -25,19 +27,39 @@ public class Duke {
 
     private static void handleCommand(String command) {
         String[] commandParts = command.split(" ", 2);
-        switch (commandParts[0]) {
-            case "list":
-                outputWriter.printTasks(taskManager.getTasks());
-                break;
-            case "done":
-                int taskNumber = Integer.parseInt(commandParts[1]);
-                taskManager.markAsDone(taskNumber);
-                outputWriter.printTaskDone(taskManager.getTask(taskNumber));
-                break;
-            default:
-                taskManager.addTask(new Task(command));
-                outputWriter.print("added: " + command);
-                break;
+        try {
+            switch (commandParts[0]) {
+                case "list":
+                    outputWriter.printTasks(taskManager.getTasks());
+                    break;
+                case "done":
+                    int taskNumber = Integer.parseInt(commandParts[1]);
+                    taskManager.markAsDone(taskNumber);
+                    outputWriter.notifyTaskDone(taskManager.getTask(taskNumber));
+                    break;
+                case "todo":
+                    ToDo todo = new ToDo(commandParts[1]);
+                    taskManager.addTask(todo);
+                    outputWriter.notifyAddTask(todo, taskManager.getNumberOfTasks());
+                    break;
+                case "event":
+                    String[] eventParams = commandParts[1].split(" /at ", 2);
+                    Event event = new Event(eventParams[0], eventParams[1]);
+                    taskManager.addTask(event);
+                    outputWriter.notifyAddTask(event, taskManager.getNumberOfTasks());
+                    break;
+                case "deadline":
+                    String[] deadlineParams = commandParts[1].split(" /by ", 2);
+                    Deadline deadline = new Deadline(deadlineParams[0], deadlineParams[1]);
+                    taskManager.addTask(deadline);
+                    outputWriter.notifyAddTask(deadline, taskManager.getNumberOfTasks());
+                    break;
+                default:
+                    outputWriter.print("Invalid command!");
+                    break;
+            }
+        } catch (Exception e) {
+            outputWriter.print("Invalid command!");
         }
     }
 }

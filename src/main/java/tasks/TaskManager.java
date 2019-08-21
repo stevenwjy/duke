@@ -1,26 +1,30 @@
+package tasks;
+
 import java.util.List;
 import java.util.ArrayList;
 
-class TaskManager {
+public class TaskManager {
     private List<Task> tasks;
 
-    TaskManager() {
+    public TaskManager() {
         this.tasks = new ArrayList<>();
     }
 
-    List<Task> getTasks() {
+    public int getNumberOfTasks() { return tasks.size(); }
+
+    public List<Task> getTasks() {
         return tasks;
     }
 
-    Task getTask(int taskNumber) {
+    public Task getTask(int taskNumber) {
         return tasks.get(taskNumber - 1);
     }
 
-    void addTask(Task task) {
+    public void addTask(Task task) {
         tasks.add(task);
     }
 
-    void markAsDone(int taskNumber) {
+    public void markAsDone(int taskNumber) {
         tasks.get(taskNumber - 1).markAsDone();
     }
 }
