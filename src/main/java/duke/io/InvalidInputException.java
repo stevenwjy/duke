@@ -1,6 +1,6 @@
 package duke.io;
 
-public final class InvalidInputException extends RuntimeException {
+public final class InvalidInputException extends Exception {
     public enum Code {
         EMPTY_DONE_DESCRIPTION,
         EMPTY_DELETE_DESCRIPTION,
