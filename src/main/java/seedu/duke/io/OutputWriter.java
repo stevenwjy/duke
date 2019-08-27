@@ -1,6 +1,6 @@
-package duke.io;
+package seedu.duke.io;
 
-import duke.tasks.Task;
+import seedu.duke.tasks.Task;
 
 import java.util.List;
 

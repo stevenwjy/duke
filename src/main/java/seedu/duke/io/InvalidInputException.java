@@ -1,4 +1,4 @@
-package duke.io;
+package seedu.duke.io;
 
 public final class InvalidInputException extends Exception {
     public enum Code {

@@ -1,9 +1,9 @@
-package duke;
+package seedu.duke;
 
-import duke.io.InputReader;
-import duke.io.InvalidInputException;
-import duke.io.OutputWriter;
-import duke.tasks.*;
+import seedu.duke.io.InputReader;
+import seedu.duke.io.InvalidInputException;
+import seedu.duke.io.OutputWriter;
+import seedu.duke.tasks.*;
 
 public class Duke {
     private static InputReader inputReader;
