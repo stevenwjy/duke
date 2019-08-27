@@ -101,7 +101,7 @@ public class Duke {
                     throw new InvalidInputException(InvalidInputException.Code.UNKNOWN_COMMAND);
             }
         } catch (InvalidInputException e) {
-            outputWriter.print(e.errorDescription());
+            outputWriter.print(e.getMessage());
         }
     }
 }
