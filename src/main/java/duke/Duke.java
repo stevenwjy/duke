@@ -1,4 +1,9 @@
-import tasks.*;
+package duke;
+
+import duke.io.InputReader;
+import duke.io.InvalidInputException;
+import duke.io.OutputWriter;
+import duke.tasks.*;
 
 public class Duke {
     private static InputReader inputReader;

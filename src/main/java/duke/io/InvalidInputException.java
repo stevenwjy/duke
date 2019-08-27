@@ -1,3 +1,5 @@
+package duke.io;
+
 public final class InvalidInputException extends RuntimeException {
     public enum Code {
         EMPTY_DONE_DESCRIPTION,
@@ -13,7 +15,7 @@ public final class InvalidInputException extends RuntimeException {
 
     private Code code;
 
-    InvalidInputException(Code code) {
+    public InvalidInputException(Code code) {
         this.code = code;
     }
 

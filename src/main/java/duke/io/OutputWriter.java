@@ -1,37 +1,39 @@
-import tasks.Task;
+package duke.io;
+
+import duke.tasks.Task;
 
 import java.util.List;
 
-class OutputWriter {
+public class OutputWriter {
     private static String line = "    ____________________________________________________________";
     private static String tab = "     ";
 
-    void printHeader() {
+    public void printHeader() {
         System.out.println(line);
         System.out.println(tab + "Hello! I'm Duke\n" + "     What can I do for you?");
         System.out.println(line);
     }
 
-    void printFooter() {
+    public void printFooter() {
         System.out.println(line);
         System.out.println(tab + "Bye. Hope to see you again soon!");
         System.out.println(line);
     }
 
-    void print(String s) {
+    public void print(String s) {
         System.out.println(line);
         System.out.println(tab + s);
         System.out.println(line);
     }
 
-    void notifyTaskDone(Task task) {
+    public void notifyTaskDone(Task task) {
         System.out.println(line);
         System.out.println(tab + "Nice! I've marked this task as done:");
         System.out.println(tab + "  " + task);
         System.out.println(line);
     }
 
-    void notifyAddTask(Task task, int numberOfTasks) {
+    public void notifyAddTask(Task task, int numberOfTasks) {
         System.out.println(line);
         System.out.println(tab + "Got it. I've added this task:");
         System.out.println(tab + "  " + task);
@@ -39,7 +41,7 @@ class OutputWriter {
         System.out.println(line);
     }
 
-    void notifyRemoveTask(Task task, int numberOfTasks) {
+    public void notifyRemoveTask(Task task, int numberOfTasks) {
         System.out.println(line);
         System.out.println(tab + "Noted. I've removed this task:");
         System.out.println(tab + "  " + task);
@@ -47,7 +49,7 @@ class OutputWriter {
         System.out.println(line);
     }
 
-    void printTasks(List<Task> tasks) {
+    public void printTasks(List<Task> tasks) {
         System.out.println(line);
         System.out.println(tab + "Here are the tasks in your list:");
         int number = 1;
