@@ -7,12 +7,12 @@ public enum TaskType {
 
     String getTaskIcon() {
         switch (this) {
-            case TODO:
-                return "T";
-            case DEADLINE:
-                return "D";
-            case EVENT:
-                return "E";
+        case TODO:
+            return "T";
+        case DEADLINE:
+            return "D";
+        case EVENT:
+            return "E";
         }
         return null;
     }
