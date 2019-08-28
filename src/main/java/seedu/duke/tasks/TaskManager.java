@@ -29,6 +29,13 @@ public class TaskManager {
         taskStorage.saveTasks(tasks);
     }
 
+    /**
+     * Removes a task from the list of tasks that is stored by Duke chat bot.
+     *
+     * @param taskNumber The index of the task in the list that will be removed.
+     * @return The task that has been removed.
+     * @throws IOException An error if Duke chat bot fails to save the changes to the data file.
+     */
     public Task removeTask(int taskNumber) throws IOException {
         Task removedTask = tasks.remove(taskNumber - 1);
         taskStorage.saveTasks(tasks);

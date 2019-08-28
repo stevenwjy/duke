@@ -9,6 +9,15 @@ public abstract class Command {
     public abstract void execute(OutputWriter outputWriter, TaskManager taskManager)
             throws InvalidCommandException, CommandExecutionException;
 
+    /**
+     * Convert a string into <code>Command</code>. Calling this function might return different types of
+     * class that extends <code>Command</code> depending on the string provided in the parameter.
+     *
+     * @param s String representation of the command
+     * @return A command that is represented by the given string in the parameter.
+     * @throws InvalidCommandException An exception that is returned if the string provided in the parameter
+     *                                 does not follow a valid command format.
+     */
     public static Command parseCommand(String s) throws InvalidCommandException {
         String[] commandParts = s.split(" ", 2);
 
