@@ -1,6 +1,7 @@
 package seedu.duke.tasks;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class TaskManager {
@@ -45,5 +46,15 @@ public class TaskManager {
     public void markAsDone(int taskNumber) throws IOException {
         tasks.get(taskNumber - 1).markAsDone();
         taskStorage.saveTasks(tasks);
+    }
+
+    public List<Task> findTasks(String keyword) {
+        List<Task> foundList = new ArrayList<>();
+        for (Task task : tasks) {
+            if (task.getDescription().contains(keyword)) {
+                foundList.add(task);
+            }
+        }
+        return foundList;
     }
 }

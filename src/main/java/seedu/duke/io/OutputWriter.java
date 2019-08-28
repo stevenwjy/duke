@@ -85,6 +85,22 @@ public class OutputWriter {
     }
 
     /**
+     * Show list of tasks that match the keyword of a 'find' command.
+     *
+     * @param tasks List of tasks that match the keyword of a 'find' command.
+     */
+    public void showTasksFound(List<Task> tasks) {
+        out.println(line);
+        out.println(tab + "Here are the matching tasks in your list:");
+        int number = 1;
+        for (Task task : tasks) {
+            out.printf("%s%d.%s\n", tab, number, task);
+            number += 1;
+        }
+        out.println(line);
+    }
+
+    /**
      * Show an error message to the user that is caught during the program execution.
      *
      * @param errorMessage A description of the error that is caught by the program.

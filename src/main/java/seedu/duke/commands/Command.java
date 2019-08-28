@@ -25,7 +25,7 @@ public abstract class Command {
             if (commandParts[0].matches("^(done|delete)$")) {
                 throw new InvalidCommandException("You must provide a task number for '"
                         + commandParts[0] + "' command!");
-            } else if (commandParts[0].matches("^(todo|event|deadline)$")) {
+            } else if (commandParts[0].matches("^(todo|event|deadline|find)$")) {
                 throw new InvalidCommandException("You must provide a description for '"
                         + commandParts[0] + "' command!");
             }
@@ -60,6 +60,8 @@ public abstract class Command {
                 throw new InvalidCommandException("The description of a deadline must contain ' /by '.");
             }
             return new AddDeadlineCommand(deadlineParams[0], deadlineParams[1]);
+        case "find":
+            return new FindCommand(commandParts[1]);
         case "bye":
             return new ExitCommand();
         default:
