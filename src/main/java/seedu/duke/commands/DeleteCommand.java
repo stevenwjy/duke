@@ -3,6 +3,7 @@ package seedu.duke.commands;
 import seedu.duke.commands.exceptions.CommandExecutionException;
 import seedu.duke.commands.exceptions.InvalidCommandException;
 import seedu.duke.io.OutputWriter;
+import seedu.duke.tasks.Task;
 import seedu.duke.tasks.TaskManager;
 
 import java.io.IOException;
@@ -18,8 +19,8 @@ public class DeleteCommand extends Command {
     public void execute(OutputWriter outputWriter, TaskManager taskManager)
             throws InvalidCommandException, CommandExecutionException {
         try {
-            taskManager.removeTask(taskNumber);
-            outputWriter.notifyTaskDone(taskManager.getTask(taskNumber));
+            Task removedTask = taskManager.removeTask(taskNumber);
+            outputWriter.notifyRemoveTask(removedTask, taskManager.getNumberOfTasks());
         } catch (IndexOutOfBoundsException e) {
             throw new InvalidCommandException("Task number does not exist");
         } catch (IOException e) {
