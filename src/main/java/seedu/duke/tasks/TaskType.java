@@ -1,19 +1,17 @@
 package seedu.duke.tasks;
 
 public enum TaskType {
-    TODO,
-    DEADLINE,
-    EVENT;
+    TODO("T"),
+    DEADLINE("D"),
+    EVENT("E");
+
+    private String icon;
+
+    TaskType(String icon) {
+        this.icon = icon;
+    }
 
     String getTaskIcon() {
-        switch (this) {
-        case TODO:
-            return "T";
-        case DEADLINE:
-            return "D";
-        case EVENT:
-            return "E";
-        }
-        return null;
+        return icon;
     }
 }
