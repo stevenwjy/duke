@@ -9,7 +9,7 @@ public class EventTest {
     public void toString_isNotDone_stringReturned() {
         String description = "example event";
         String eventInfo = "random house";
-        String expectedValue = "[E][\u2718] " + description + " (at: " + eventInfo + ")";
+        String expectedValue = "[E][X] " + description + " (at: " + eventInfo + ")";
         Event event = new Event(description, eventInfo);
 
         assertEquals(expectedValue, event.toString());
@@ -19,7 +19,7 @@ public class EventTest {
     public void toString_isDone_stringReturned() {
         String description = "example event";
         String eventInfo = "random Monday";
-        String expectedValue = "[E][\u2713] " + description + " (at: " + eventInfo + ")";
+        String expectedValue = "[E][O] " + description + " (at: " + eventInfo + ")";
         Event event = new Event(description, eventInfo);
         event.markAsDone();
 

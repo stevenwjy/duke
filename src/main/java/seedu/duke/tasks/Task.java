@@ -73,6 +73,6 @@ public abstract class Task {
     }
 
     String getStatusIcon() {
-        return (done ? "\u2713" : "\u2718");
+        return (done ? "O" : "X");
     }
 }
