@@ -23,11 +23,11 @@ public abstract class Command {
 
         if (commandParts.length < 2) {
             if (commandParts[0].matches("^(done|delete)$")) {
-                throw new InvalidCommandException("You must provide a task number for '" +
-                        commandParts[0] + "' command!");
+                throw new InvalidCommandException("You must provide a task number for '"
+                        + commandParts[0] + "' command!");
             } else if (commandParts[0].matches("^(todo|event|deadline)$")) {
-                throw new InvalidCommandException("You must provide a description for '" +
-                        commandParts[0] + "' command!");
+                throw new InvalidCommandException("You must provide a description for '"
+                        + commandParts[0] + "' command!");
             }
         }
 

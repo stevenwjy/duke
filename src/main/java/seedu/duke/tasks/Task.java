@@ -16,8 +16,8 @@ public abstract class Task {
     static Task parseTask(String s) throws InvalidTaskException {
         String[] components = s.split(" \\| ", 3);
         if (components.length < 3) {
-            throw new InvalidTaskException("Unsupported format of task representation in String, " +
-                    "number of components: " + components.length);
+            throw new InvalidTaskException("Unsupported format of task representation in String, "
+                    + "number of components: " + components.length);
         }
 
         boolean taskIsDone;

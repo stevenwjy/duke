@@ -37,8 +37,8 @@ public class Duke {
                 }
             }
         } catch (Exception e) {
-            outputWriter.showError("Program is terminated due to unexpected behavior ... " +
-                    "Error: " + e.getMessage());
+            outputWriter.showError("Program is terminated due to unexpected behavior ... "
+                    + "Error: " + e.getMessage());
         }
     }
 
