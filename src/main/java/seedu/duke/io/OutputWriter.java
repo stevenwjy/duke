@@ -56,6 +56,17 @@ public class OutputWriter {
         out.println(line);
     }
 
+    public void showTasksFound(List<Task> tasks) {
+        out.println(line);
+        out.println(tab + "Here are the matching tasks in your list:");
+        int number = 1;
+        for (Task task : tasks) {
+            out.printf("%s%d.%s\n", tab, number, task);
+            number += 1;
+        }
+        out.println(line);
+    }
+
     public void showError(String errorMessage) {
         out.println(line);
         out.println(tab + "☹ OOPS!!! " + errorMessage);
