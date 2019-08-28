@@ -1,13 +1,15 @@
 package seedu.duke.tasks;
 
-import java.util.ArrayList;
+import java.io.File;
 import java.util.List;
 
 public class TaskManager {
     private List<Task> tasks;
+    private TaskStorage taskStorage;
 
-    public TaskManager() {
-        this.tasks = new ArrayList<>();
+    public TaskManager(String filePath) throws Exception {
+        taskStorage = new TaskStorage(filePath);
+        tasks = taskStorage.loadTasks();
     }
 
     public int getNumberOfTasks() {
@@ -22,15 +24,19 @@ public class TaskManager {
         return tasks.get(taskNumber - 1);
     }
 
-    public void addTask(Task task) {
+    public void addTask(Task task) throws Exception {
         tasks.add(task);
+        taskStorage.saveTasks(tasks);
     }
 
-    public Task removeTask(int taskNumber) {
-        return tasks.remove(taskNumber - 1);
+    public Task removeTask(int taskNumber) throws Exception {
+        Task removedTask = tasks.remove(taskNumber - 1);
+        taskStorage.saveTasks(tasks);
+        return removedTask;
     }
 
-    public void markAsDone(int taskNumber) {
+    public void markAsDone(int taskNumber) throws Exception {
         tasks.get(taskNumber - 1).markAsDone();
+        taskStorage.saveTasks(tasks);
     }
 }

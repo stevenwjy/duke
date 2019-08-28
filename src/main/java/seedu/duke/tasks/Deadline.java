@@ -4,12 +4,23 @@ public class Deadline extends Task {
     private String timeDescription;
 
     public Deadline(String description, String timeDescription) {
-        super(TaskType.DEADLINE, description);
+        super(TaskType.DEADLINE, description, false);
+        this.timeDescription = timeDescription;
+    }
+
+    public Deadline(String description, String timeDescription, boolean done) {
+        super(TaskType.DEADLINE, description, done);
         this.timeDescription = timeDescription;
     }
 
     @Override
-    String getAdditionalDescription() {
-        return " (by: " + timeDescription + ")";
+    public String toString() {
+        return "[" + getTaskIcon() + "][" + getStatusIcon() + "] " +
+                getDescription() + " (by: " + timeDescription + ")";
+    }
+
+    @Override
+    String getDataRepresentation() {
+        return getTaskIcon() + " | " + (isDone() ? "1" : "0") + " | " + getDescription() + " | " + timeDescription;
     }
 }
