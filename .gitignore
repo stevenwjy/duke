@@ -19,3 +19,6 @@ bin/
 # Ignore data files
 data/
 
+# Ignore test output
+text-ui-test/ACTUAL.txt
+
