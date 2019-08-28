@@ -1,14 +1,24 @@
 package seedu.duke.tasks;
 
 import java.io.*;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
 class TaskStorage {
     private File file;
 
-    TaskStorage(String filePath) {
+    TaskStorage(String filePath) throws IOException {
         this.file = new File(filePath);
+
+        File directory = new File(String.valueOf(Path.of(filePath).getParent()));
+        if (!directory.isDirectory()) {
+            directory.mkdirs();
+        }
+
+        if (!file.isFile()) {
+            file.createNewFile();
+        }
     }
 
     List<Task> loadTasks() throws IOException, InvalidTaskException {

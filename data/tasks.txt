@@ -1,3 +1,0 @@
-E | 0 | example event | tomorrow
-D | 1 | example deadline | tomorrow
-T | 1 | example todo

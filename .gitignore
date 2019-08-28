@@ -16,3 +16,6 @@ bin/
 # Java class files
 *.class
 
+# Ignore data files
+data/
+
