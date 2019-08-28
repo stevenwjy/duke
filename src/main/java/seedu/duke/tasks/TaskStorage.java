@@ -1,5 +1,7 @@
 package seedu.duke.tasks;
 
+import seedu.duke.tasks.exceptions.InvalidTaskException;
+
 import java.io.*;
 import java.nio.file.Path;
 import java.util.ArrayList;

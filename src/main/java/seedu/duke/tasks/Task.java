@@ -1,5 +1,7 @@
 package seedu.duke.tasks;
 
+import seedu.duke.tasks.exceptions.InvalidTaskException;
+
 public abstract class Task {
     private TaskType type;
     private String description;

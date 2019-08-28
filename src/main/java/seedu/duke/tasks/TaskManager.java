@@ -1,6 +1,6 @@
 package seedu.duke.tasks;
 
-import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 public class TaskManager {
@@ -24,18 +24,18 @@ public class TaskManager {
         return tasks.get(taskNumber - 1);
     }
 
-    public void addTask(Task task) throws Exception {
+    public void addTask(Task task) throws IOException {
         tasks.add(task);
         taskStorage.saveTasks(tasks);
     }
 
-    public Task removeTask(int taskNumber) throws Exception {
+    public Task removeTask(int taskNumber) throws IOException {
         Task removedTask = tasks.remove(taskNumber - 1);
         taskStorage.saveTasks(tasks);
         return removedTask;
     }
 
-    public void markAsDone(int taskNumber) throws Exception {
+    public void markAsDone(int taskNumber) throws IOException {
         tasks.get(taskNumber - 1).markAsDone();
         taskStorage.saveTasks(tasks);
     }

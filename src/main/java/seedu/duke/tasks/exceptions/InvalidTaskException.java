@@ -1,7 +1,7 @@
-package seedu.duke.tasks;
+package seedu.duke.tasks.exceptions;
 
 public class InvalidTaskException extends Exception {
-    InvalidTaskException(String message) {
+    public InvalidTaskException(String message) {
         super(message);
     }
 }
