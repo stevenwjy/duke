@@ -48,6 +48,12 @@ public class TaskManager {
         taskStorage.saveTasks(tasks);
     }
 
+    /**
+     * Find tasks that match the specified keyword.
+     *
+     * @param keyword A keyword that is searched in the task description.
+     * @return List of tasks that match the specified keyword.
+     */
     public List<Task> findTasks(String keyword) {
         List<Task> foundList = new ArrayList<>();
         for (Task task : tasks) {
