@@ -7,6 +7,13 @@ import java.time.format.FormatStyle;
 public class Deadline extends Task {
     private String timeDescription;
 
+    /**
+     * Constructor for <code>Deadline</code> that represents one of the possible task types.
+     * By default, the task will not be marked as done upon initialization.
+     *
+     * @param description     Description of the <code>Deadline</code> task.
+     * @param timeDescription An information that specifies the deadline of the task.
+     */
     public Deadline(String description, String timeDescription) {
         super(TaskType.DEADLINE, description, false);
 

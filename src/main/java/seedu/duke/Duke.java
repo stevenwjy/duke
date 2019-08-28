@@ -15,6 +15,11 @@ public class Duke {
         this.taskManager = new TaskManager(filePath);
     }
 
+    /**
+     * Run duke chat bot. This function will trigger reading from <code>System.in</code>
+     * and printing output to <code>System.out</code>. Initial data will be loaded from the
+     * <code>filePath</code> that is specified upon initialization of <code>Duke</code> class.
+     */
     public void run() {
         outputWriter.showHeader();
         try {
@@ -37,6 +42,14 @@ public class Duke {
         }
     }
 
+    /**
+     * Default main function for <code>Duke</code> class. Calling this function will run a chat bot with
+     * default task data at 'data/task.txt'. If there is no such file, the program will create an empty
+     * file.
+     *
+     * @param args Arguments that are provided upon running the program. Those arguments will not give
+     *             any effect towards the program execution.
+     */
     public static void main(String[] args) {
         try {
             new Duke("data/tasks.txt").run();
