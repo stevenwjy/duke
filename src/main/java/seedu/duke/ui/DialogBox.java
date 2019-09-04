@@ -6,10 +6,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
-import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 
 import java.io.IOException;
 import java.util.Collections;
@@ -21,7 +22,8 @@ import java.util.Collections;
  */
 class DialogBox extends HBox {
     @FXML
-    private Label dialog;
+    private Text dialog;
+
     @FXML
     private ImageView displayPicture;
 
@@ -45,6 +47,13 @@ class DialogBox extends HBox {
     private void flip() {
         ObservableList<Node> tmp = FXCollections.observableArrayList(this.getChildren());
         Collections.reverse(tmp);
+        for (Node node : tmp) {
+            if (node instanceof Text) {
+                Text text = (Text) node;
+                text.setTextAlignment(TextAlignment.LEFT);
+            }
+        }
+
         getChildren().setAll(tmp);
         setAlignment(Pos.TOP_LEFT);
     }
