@@ -1,25 +1,27 @@
 package seedu.duke.commands;
 
 import seedu.duke.commands.exceptions.CommandExecutionException;
-import seedu.duke.io.OutputWriter;
 import seedu.duke.tasks.TaskManager;
 import seedu.duke.tasks.ToDo;
 
 import java.io.IOException;
 
-public class AddToDoCommand extends Command {
+/**
+ * Shows a notification to the user that a new <code>ToDo</code> task has been successfully added to the task list.
+ */
+public class AddToDoCommand extends AddTaskCommand {
     private String taskDescription;
 
-    public AddToDoCommand(String taskDescription) {
+    AddToDoCommand(String taskDescription) {
         this.taskDescription = taskDescription;
     }
 
     @Override
-    public void execute(OutputWriter outputWriter, TaskManager taskManager) throws CommandExecutionException {
+    public CommandResult execute(TaskManager taskManager) throws CommandExecutionException {
         ToDo todo = new ToDo(taskDescription);
         try {
             taskManager.addTask(todo);
-            outputWriter.notifyAddTask(todo, taskManager.getNumberOfTasks());
+            return getCommandResult(todo, taskManager.getNumberOfTasks());
         } catch (IOException e) {
             throw new CommandExecutionException(e.getMessage());
         } catch (Exception e) {

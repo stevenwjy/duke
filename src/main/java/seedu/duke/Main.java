@@ -1,0 +1,45 @@
+package seedu.duke;
+
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
+import seedu.duke.ui.MainWindow;
+
+import java.io.IOException;
+import java.util.Arrays;
+
+/**
+ * A GUI for Duke using FXML.
+ */
+public class Main extends Application {
+    private Duke duke;
+
+    public Main() throws Exception {
+        try {
+            duke = new Duke("data/tasks.txt");
+        } catch (Exception e) {
+            System.out.println(Arrays.toString(e.getStackTrace()));
+        }
+    }
+
+    /**
+     * Starts the duke chat bot.
+     *
+     * @param stage A stage to display the GUI for Duke app.
+     */
+    @Override
+    public void start(Stage stage) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/view/MainWindow.fxml"));
+            AnchorPane ap = fxmlLoader.load();
+            Scene scene = new Scene(ap);
+            stage.setScene(scene);
+            fxmlLoader.<MainWindow>getController().setDuke(duke);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}

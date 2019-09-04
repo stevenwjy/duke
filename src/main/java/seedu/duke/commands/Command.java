@@ -2,11 +2,10 @@ package seedu.duke.commands;
 
 import seedu.duke.commands.exceptions.CommandExecutionException;
 import seedu.duke.commands.exceptions.InvalidCommandException;
-import seedu.duke.io.OutputWriter;
 import seedu.duke.tasks.TaskManager;
 
 public abstract class Command {
-    public abstract void execute(OutputWriter outputWriter, TaskManager taskManager)
+    public abstract CommandResult execute(TaskManager taskManager)
             throws InvalidCommandException, CommandExecutionException;
 
     /**
@@ -65,7 +64,7 @@ public abstract class Command {
         case "bye":
             return new ExitCommand();
         default:
-            throw new InvalidCommandException("I'm sorry, but I don't know what that means :-(\"");
+            throw new InvalidCommandException("I'm sorry, but I don't know what that means :-(");
         }
     }
 }
