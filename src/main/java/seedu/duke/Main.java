@@ -16,7 +16,11 @@ import java.util.Arrays;
 public class Main extends Application {
     private Duke duke;
 
-    public Main() throws Exception {
+    /**
+     * Constructor for Main application of Duke chat bot. If it fails to initialize Duke class, then it will
+     * print the stack trace that causes the error to standard output.
+     */
+    public Main() {
         try {
             duke = new Duke("data/tasks.txt");
         } catch (Exception e) {

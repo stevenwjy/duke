@@ -21,8 +21,8 @@ public class DeleteCommand extends Command {
     public CommandResult execute(TaskManager taskManager) throws InvalidCommandException, CommandExecutionException {
         try {
             Task removedTask = taskManager.removeTask(taskNumber);
-            return new CommandResult("Noted. I've removed this task:\n" + "  " + removedTask + "\n" +
-                    String.format("Now you have %d tasks in the list.\n", taskManager.getNumberOfTasks()));
+            return new CommandResult("Noted. I've removed this task:\n" + "  " + removedTask + "\n"
+                    + String.format("Now you have %d tasks in the list.\n", taskManager.getNumberOfTasks()));
         } catch (IndexOutOfBoundsException e) {
             throw new InvalidCommandException("Task number does not exist");
         } catch (IOException e) {

@@ -20,8 +20,8 @@ public class DoneCommand extends Command {
     public CommandResult execute(TaskManager taskManager) throws InvalidCommandException, CommandExecutionException {
         try {
             taskManager.markAsDone(taskNumber);
-            return new CommandResult("Nice! I've marked this task as done:\n" +
-                    "  " + taskManager.getTask(taskNumber) + "\n");
+            return new CommandResult("Nice! I've marked this task as done:\n"
+                    + "  " + taskManager.getTask(taskNumber) + "\n");
         } catch (IndexOutOfBoundsException e) {
             throw new InvalidCommandException("Task number does not exist");
         } catch (IOException e) {
