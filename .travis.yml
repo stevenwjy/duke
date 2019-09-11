@@ -3,6 +3,5 @@ language: java
 jdk:
   - openjdk11
 
-script: "sbt clean coverage test"
-
-after_success: "sbt coveralls"
+after_success:
+  - ./gradlew jacocoTestReport coveralls
