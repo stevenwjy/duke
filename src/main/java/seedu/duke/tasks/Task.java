@@ -5,12 +5,12 @@ import seedu.duke.tasks.exceptions.InvalidTaskException;
 public abstract class Task {
     private TaskType type;
     private String description;
-    private boolean done;
+    private boolean isDone;
 
-    Task(TaskType type, String description, boolean done) {
+    Task(TaskType type, String description, boolean isDone) {
         this.type = type;
         this.description = description;
-        this.done = done;
+        this.isDone = isDone;
     }
 
     static Task parseTask(String s) throws InvalidTaskException {
@@ -22,10 +22,10 @@ public abstract class Task {
 
         boolean taskIsDone;
         switch (components[1]) {
-        case "0":
+        case "X":
             taskIsDone = false;
             break;
-        case "1":
+        case "O":
             taskIsDone = true;
             break;
         default:
@@ -52,11 +52,7 @@ public abstract class Task {
         }
     }
 
-    public boolean isDone() {
-        return done;
-    }
-
-    public String getDescription() {
+    String getDescription() {
         return description;
     }
 
@@ -65,7 +61,7 @@ public abstract class Task {
     abstract String getDataRepresentation();
 
     void markAsDone() {
-        this.done = true;
+        this.isDone = true;
     }
 
     String getTaskIcon() {
@@ -73,6 +69,6 @@ public abstract class Task {
     }
 
     String getStatusIcon() {
-        return (done ? "O" : "X");
+        return (isDone ? "O" : "X");
     }
 }

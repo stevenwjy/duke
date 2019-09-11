@@ -28,6 +28,6 @@ public class Event extends Task {
 
     @Override
     String getDataRepresentation() {
-        return getTaskIcon() + " | " + (isDone() ? "1" : "0") + " | " + getDescription() + " | " + timeDescription;
+        return getTaskIcon() + " | " + getStatusIcon() + " | " + getDescription() + " | " + timeDescription;
     }
 }

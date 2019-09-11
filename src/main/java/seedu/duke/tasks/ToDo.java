@@ -22,6 +22,6 @@ public class ToDo extends Task {
 
     @Override
     String getDataRepresentation() {
-        return getTaskIcon() + " | " + (isDone() ? "1" : "0") + " | " + getDescription();
+        return getTaskIcon() + " | " + getStatusIcon() + " | " + getDescription();
     }
 }
