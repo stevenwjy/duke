@@ -5,14 +5,29 @@ import seedu.duke.tasks.exceptions.InvalidTaskException;
 public abstract class Task {
     private TaskType type;
     private String description;
-    private boolean done;
+    private boolean isDone;
 
-    Task(TaskType type, String description, boolean done) {
+    /**
+     * Constructor for <code>Task</code> object.
+     *
+     * @param type        Type of the task.
+     * @param description Description of the task.
+     * @param isDone      A boolean that indicates whether the task has been done or not.
+     */
+    Task(TaskType type, String description, boolean isDone) {
         this.type = type;
         this.description = description;
-        this.done = done;
+        this.isDone = isDone;
     }
 
+    /**
+     * Parser for Task object. It converts the <code>String</code> representation of a Task that is used to
+     * store it in the database into a <code>Task</code> object.
+     *
+     * @param s A <code>String</code> representation of a <code>Task</code> which is stored in the file storage.
+     * @return A <code>Task</code> object that corresponds to the <code>String</code>
+     * @throws InvalidTaskException An error that causes failure in the parsing process, e.g. inconsistent format.
+     */
     static Task parseTask(String s) throws InvalidTaskException {
         String[] components = s.split(" \\| ", 3);
         if (components.length < 3) {
@@ -22,10 +37,10 @@ public abstract class Task {
 
         boolean taskIsDone;
         switch (components[1]) {
-        case "0":
+        case "X":
             taskIsDone = false;
             break;
-        case "1":
+        case "O":
             taskIsDone = true;
             break;
         default:
@@ -52,11 +67,7 @@ public abstract class Task {
         }
     }
 
-    public boolean isDone() {
-        return done;
-    }
-
-    public String getDescription() {
+    String getDescription() {
         return description;
     }
 
@@ -65,7 +76,7 @@ public abstract class Task {
     abstract String getDataRepresentation();
 
     void markAsDone() {
-        this.done = true;
+        this.isDone = true;
     }
 
     String getTaskIcon() {
@@ -73,6 +84,6 @@ public abstract class Task {
     }
 
     String getStatusIcon() {
-        return (done ? "O" : "X");
+        return (isDone ? "O" : "X");
     }
 }

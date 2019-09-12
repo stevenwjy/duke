@@ -16,6 +16,14 @@ public class FindCommand extends Command {
         this.keyword = keyword;
     }
 
+    /**
+     * Finds all the tasks that contain a certain keyword in its description.
+     *
+     * @param taskManager A task manager that handles operations to the list of tasks.
+     * @return A response that informs the user about all of the tasks that contain the specified keyword.
+     * @throws CommandExecutionException An error that occurs during command execution
+     *                                   (e.g. due to input/output failure when updating database file).
+     */
     @Override
     public CommandResult execute(TaskManager taskManager) throws CommandExecutionException {
         try {

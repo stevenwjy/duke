@@ -15,8 +15,15 @@ public class Event extends Task {
         this.timeDescription = timeDescription;
     }
 
-    public Event(String description, String timeDescription, boolean done) {
-        super(TaskType.EVENT, description, done);
+    /**
+     * Constructor for <code>Event</code> that represents one of the possible task types.
+     *
+     * @param description     Description of the <code>Event</code> task.
+     * @param timeDescription An information regarding the event.
+     * @param isDone          A boolean that indicates whether an <code>Event</code> task has been done or not.
+     */
+    Event(String description, String timeDescription, boolean isDone) {
+        super(TaskType.EVENT, description, isDone);
         this.timeDescription = timeDescription;
     }
 
@@ -28,6 +35,6 @@ public class Event extends Task {
 
     @Override
     String getDataRepresentation() {
-        return getTaskIcon() + " | " + (isDone() ? "1" : "0") + " | " + getDescription() + " | " + timeDescription;
+        return getTaskIcon() + " | " + getStatusIcon() + " | " + getDescription() + " | " + timeDescription;
     }
 }

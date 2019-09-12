@@ -9,6 +9,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import seedu.duke.Duke;
 
+import java.util.function.Function;
+
 /**
  * Controller for MainWindow. Provides the layout for the other controls.
  */
@@ -27,27 +29,36 @@ public class MainWindow extends AnchorPane {
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/user.jpg"));
     private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/duke.jpg"));
 
+    private Function<String, Void> inputHandler;
+
+    public MainWindow() {
+        inputHandler = (str) -> null;
+    }
+
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
     }
 
-    public void setDuke(Duke duke) {
-        this.duke = duke;
+    public void setInputHandler(Function<String, Void> inputHandler) {
+        this.inputHandler = inputHandler;
     }
 
     /**
-     * Creates two dialog boxes, one echoing user input and the other containing Duke's reply and then appends them to
-     * the dialog container. Clears the user input after processing.
+     * Shows message from Duke chat bot to the user.
+     */
+    public void showMessageFromDuke(String message) {
+        dialogContainer.getChildren().add(DialogBox.getDukeDialog(message, dukeImage));
+    }
+
+    /**
+     * Handles user input that is written in the text box.
      */
     @FXML
     private void handleUserInput() {
         String input = userInput.getText();
-        String response = duke.getResponse(input);
-        dialogContainer.getChildren().addAll(
-                DialogBox.getUserDialog(input, userImage),
-                DialogBox.getDukeDialog(response, dukeImage)
-        );
+        dialogContainer.getChildren().add(DialogBox.getUserDialog(input, userImage));
+        inputHandler.apply(input);
         userInput.clear();
     }
 }
