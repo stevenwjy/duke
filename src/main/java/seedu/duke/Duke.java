@@ -38,7 +38,7 @@ public class Duke {
      * Returns response from duke chat bot. Initial data will be loaded from the
      * <code>filePath</code> that is specified upon initialization of <code>Duke</code> class.
      */
-    public void handleUserInput(String inputLine) {
+    void handleUserInput(String inputLine) {
         try {
             Command command = Command.parseCommand(inputLine);
             CommandResult commandResult = command.execute(taskManager);

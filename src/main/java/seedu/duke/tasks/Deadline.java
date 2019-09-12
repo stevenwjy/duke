@@ -3,6 +3,7 @@ package seedu.duke.tasks;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
+import java.util.Date;
 
 public class Deadline extends Task {
     private String timeDescription;
@@ -13,9 +14,12 @@ public class Deadline extends Task {
      *
      * @param description     Description of the <code>Deadline</code> task.
      * @param timeDescription An information that specifies the deadline of the task.
+     * @param isDone          A boolean that indicates whether a <code>Deadline</code> task has been done or not.
+     * @param createdAt       Creation time
+     * @param updatedAt       Last update time
      */
-    public Deadline(String description, String timeDescription) {
-        super(TaskType.DEADLINE, description, false);
+    Deadline(String description, String timeDescription, boolean isDone, Date createdAt, Date updatedAt) {
+        super(TaskType.DEADLINE, description, isDone, createdAt, updatedAt);
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
         DateTimeFormatter targetFormatter = DateTimeFormatter
@@ -33,15 +37,13 @@ public class Deadline extends Task {
     }
 
     /**
-     * Constructor for <code>Event</code> that represents one of the possible task types.
+     * Convenient constructor for <code>Deadline</code> that represents one of the possible task types.
      *
-     * @param description     Description of the <code>Event</code> task.
-     * @param timeDescription An information regarding the event.
-     * @param isDone          A boolean that indicates whether a <code>Deadline</code> task has been done or not.
+     * @param description     Description of the <code>Deadline</code> task.
+     * @param timeDescription An information that specifies the deadline of the task.
      */
-    Deadline(String description, String timeDescription, boolean isDone) {
-        super(TaskType.DEADLINE, description, isDone);
-        this.timeDescription = timeDescription;
+    public Deadline(String description, String timeDescription) {
+        this(description, timeDescription, false, new Date(), new Date());
     }
 
     @Override
@@ -61,6 +63,7 @@ public class Deadline extends Task {
 
     @Override
     String getDataRepresentation() {
-        return getTaskIcon() + " | " + getStatusIcon() + " | " + getDescription() + " | " + timeDescription;
+        return getTaskIcon() + " | " + getStatusIcon() + " | " + getCreatedAt() + " | " + getUpdatedAt() + " | "
+                + getDescription() + " | " + timeDescription;
     }
 }

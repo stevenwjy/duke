@@ -42,7 +42,16 @@ public abstract class Command {
 
         switch (commandParts[0]) {
         case "list":
-            return new ListCommand();
+            if (commandParts.length == 1) {
+                return new ListCommand();
+            }
+
+            String[] listParams = commandParts[1].split("/orderby ", 2);
+            if (listParams.length == 1) {
+                return new ListCommand();
+            } else {
+                return new ListCommand(listParams[1]);
+            }
         case "done":
         case "delete":
             try {
