@@ -19,7 +19,10 @@ public class DoneCommand extends Command {
     @Override
     public CommandResult execute(TaskManager taskManager) throws InvalidCommandException, CommandExecutionException {
         try {
+            int oldNumberOfTasks = taskManager.getNumberOfTasks();
             taskManager.markAsDone(taskNumber);
+            assert oldNumberOfTasks == taskManager.getNumberOfTasks();
+
             return new CommandResult("Nice! I've marked this task as done:\n"
                     + "  " + taskManager.getTask(taskNumber) + "\n");
         } catch (IndexOutOfBoundsException e) {

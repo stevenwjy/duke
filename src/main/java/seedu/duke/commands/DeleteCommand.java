@@ -20,7 +20,10 @@ public class DeleteCommand extends Command {
     @Override
     public CommandResult execute(TaskManager taskManager) throws InvalidCommandException, CommandExecutionException {
         try {
+            int oldNumberOfTasks = taskManager.getNumberOfTasks();
             Task removedTask = taskManager.removeTask(taskNumber);
+            assert oldNumberOfTasks == (taskManager.getNumberOfTasks() + 1);
+
             return new CommandResult("Noted. I've removed this task:\n" + "  " + removedTask + "\n"
                     + String.format("Now you have %d tasks in the list.\n", taskManager.getNumberOfTasks()));
         } catch (IndexOutOfBoundsException e) {

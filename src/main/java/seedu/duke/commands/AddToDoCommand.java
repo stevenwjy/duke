@@ -20,7 +20,10 @@ public class AddToDoCommand extends AddTaskCommand {
     public CommandResult execute(TaskManager taskManager) throws CommandExecutionException {
         ToDo todo = new ToDo(taskDescription);
         try {
+            int oldNumberOfTasks = taskManager.getNumberOfTasks();
             taskManager.addTask(todo);
+            assert (oldNumberOfTasks + 1) == taskManager.getNumberOfTasks();
+
             return getCommandResult(todo, taskManager.getNumberOfTasks());
         } catch (IOException e) {
             throw new CommandExecutionException(e.getMessage());

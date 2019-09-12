@@ -22,7 +22,10 @@ public class AddEventCommand extends AddTaskCommand {
     public CommandResult execute(TaskManager taskManager) throws CommandExecutionException {
         Event event = new Event(taskDescription, eventInfo);
         try {
+            int oldNumberOfTasks = taskManager.getNumberOfTasks();
             taskManager.addTask(event);
+            assert (oldNumberOfTasks + 1) == taskManager.getNumberOfTasks();
+
             return getCommandResult(event, taskManager.getNumberOfTasks());
         } catch (IOException e) {
             throw new CommandExecutionException(e.getMessage());

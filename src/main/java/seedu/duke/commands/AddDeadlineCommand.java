@@ -22,7 +22,10 @@ public class AddDeadlineCommand extends AddTaskCommand {
     public CommandResult execute(TaskManager taskManager) throws CommandExecutionException {
         Deadline deadline = new Deadline(taskDescription, deadlineInfo);
         try {
+            int oldNumberOfTasks = taskManager.getNumberOfTasks();
             taskManager.addTask(deadline);
+            assert (oldNumberOfTasks + 1) == taskManager.getNumberOfTasks();
+
             return getCommandResult(deadline, taskManager.getNumberOfTasks());
         } catch (IOException e) {
             throw new CommandExecutionException(e.getMessage());
