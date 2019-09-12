@@ -6,11 +6,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
-import javafx.scene.text.Text;
-import javafx.scene.text.TextAlignment;
+import javafx.scene.shape.Circle;
 
 import java.io.IOException;
 import java.util.Collections;
@@ -22,7 +22,7 @@ import java.util.Collections;
  */
 class DialogBox extends HBox {
     @FXML
-    private Text dialog;
+    private Label dialog;
 
     @FXML
     private ImageView displayPicture;
@@ -39,21 +39,15 @@ class DialogBox extends HBox {
 
         dialog.setText(text);
         displayPicture.setImage(img);
+        displayPicture.setClip(new Circle(35, 35, 35));
     }
 
     /**
      * Flips the dialog box such that the <code>ImageView</code> is on the left and text on the right.
      */
     private void flip() {
-        ObservableList<Node> tmp = FXCollections.observableArrayList(this.getChildren());
+        ObservableList<Node> tmp = FXCollections.observableArrayList(getChildren());
         Collections.reverse(tmp);
-        for (Node node : tmp) {
-            if (node instanceof Text) {
-                Text text = (Text) node;
-                text.setTextAlignment(TextAlignment.LEFT);
-            }
-        }
-
         getChildren().setAll(tmp);
         setAlignment(Pos.TOP_LEFT);
     }
