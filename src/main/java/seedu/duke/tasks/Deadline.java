@@ -45,6 +45,15 @@ public class Deadline extends Task {
     }
 
     @Override
+    boolean equals(Task other) {
+        if (!super.equals(other)) {
+            return false;
+        }
+        Deadline otherDeadline = (Deadline) other;
+        return timeDescription.equals(otherDeadline.timeDescription);
+    }
+
+    @Override
     public String toString() {
         return "[" + getTaskIcon() + "][" + getStatusIcon() + "] "
                 + getDescription() + " (by: " + timeDescription + ")";

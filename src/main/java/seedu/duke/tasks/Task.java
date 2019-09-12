@@ -67,6 +67,10 @@ public abstract class Task {
         }
     }
 
+    boolean equals(Task other) {
+        return type == other.type && description.equals(other.description);
+    }
+
     String getDescription() {
         return description;
     }
