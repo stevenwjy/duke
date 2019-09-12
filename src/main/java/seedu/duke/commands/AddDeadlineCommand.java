@@ -3,6 +3,7 @@ package seedu.duke.commands;
 import seedu.duke.commands.exceptions.CommandExecutionException;
 import seedu.duke.tasks.Deadline;
 import seedu.duke.tasks.TaskManager;
+import seedu.duke.tasks.exceptions.DuplicateTaskException;
 
 import java.io.IOException;
 
@@ -34,6 +35,8 @@ public class AddDeadlineCommand extends AddTaskCommand {
             assert (oldNumberOfTasks + 1) == taskManager.getNumberOfTasks();
 
             return getCommandResult(deadline, taskManager.getNumberOfTasks());
+        } catch (DuplicateTaskException e) {
+            throw new CommandExecutionException(e.getMessage());
         } catch (IOException e) {
             throw new CommandExecutionException(e.getMessage());
         } catch (Exception e) {

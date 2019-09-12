@@ -1,5 +1,7 @@
 package seedu.duke.tasks;
 
+import seedu.duke.tasks.exceptions.DuplicateTaskException;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +27,10 @@ public class TaskManager {
         return tasks.get(taskNumber - 1);
     }
 
-    public void addTask(Task task) throws IOException {
+    public void addTask(Task task) throws DuplicateTaskException, IOException {
+        if (tasks.stream().anyMatch(task::equals)) {
+            throw new DuplicateTaskException("Failed to add task, duplicate detected");
+        }
         tasks.add(task);
         taskStorage.saveTasks(tasks);
     }
