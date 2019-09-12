@@ -28,6 +28,15 @@ public class Event extends Task {
     }
 
     @Override
+    boolean equals(Task other) {
+        if (!super.equals(other)) {
+            return false;
+        }
+        Event otherEvent = (Event) other;
+        return timeDescription.equals(otherEvent.timeDescription);
+    }
+
+    @Override
     public String toString() {
         return "[" + getTaskIcon() + "][" + getStatusIcon() + "] "
                 + getDescription() + " (at: " + timeDescription + ")";
