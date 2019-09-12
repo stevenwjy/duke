@@ -32,8 +32,15 @@ public class Deadline extends Task {
         }
     }
 
-    public Deadline(String description, String timeDescription, boolean done) {
-        super(TaskType.DEADLINE, description, done);
+    /**
+     * Constructor for <code>Event</code> that represents one of the possible task types.
+     *
+     * @param description     Description of the <code>Event</code> task.
+     * @param timeDescription An information regarding the event.
+     * @param isDone          A boolean that indicates whether a <code>Deadline</code> task has been done or not.
+     */
+    Deadline(String description, String timeDescription, boolean isDone) {
+        super(TaskType.DEADLINE, description, isDone);
         this.timeDescription = timeDescription;
     }
 

@@ -7,12 +7,27 @@ public abstract class Task {
     private String description;
     private boolean isDone;
 
+    /**
+     * Constructor for <code>Task</code> object.
+     *
+     * @param type        Type of the task.
+     * @param description Description of the task.
+     * @param isDone      A boolean that indicates whether the task has been done or not.
+     */
     Task(TaskType type, String description, boolean isDone) {
         this.type = type;
         this.description = description;
         this.isDone = isDone;
     }
 
+    /**
+     * Parser for Task object. It converts the <code>String</code> representation of a Task that is used to
+     * store it in the database into a <code>Task</code> object.
+     *
+     * @param s A <code>String</code> representation of a <code>Task</code> which is stored in the file storage.
+     * @return A <code>Task</code> object that corresponds to the <code>String</code>
+     * @throws InvalidTaskException An error that causes failure in the parsing process, e.g. inconsistent format.
+     */
     static Task parseTask(String s) throws InvalidTaskException {
         String[] components = s.split(" \\| ", 3);
         if (components.length < 3) {

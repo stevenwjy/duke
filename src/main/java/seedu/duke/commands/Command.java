@@ -5,6 +5,16 @@ import seedu.duke.commands.exceptions.InvalidCommandException;
 import seedu.duke.tasks.TaskManager;
 
 public abstract class Command {
+    /**
+     * Executes the command. The operations that are performed depends on the implementing class.
+     *
+     * @param taskManager A task manager that handles operations to the list of tasks.
+     * @return A <code>CommandResult</code> that contains a feedback to the user in the form of <code>String</code>.
+     * @throws InvalidCommandException   An error that occurs due to invalid command parameter
+     *                                   (e.g. non-existent task number).
+     * @throws CommandExecutionException An error that occurs during command execution
+     *                                   (e.g. due to input/output failure when updating database file).
+     */
     public abstract CommandResult execute(TaskManager taskManager)
             throws InvalidCommandException, CommandExecutionException;
 
