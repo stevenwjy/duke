@@ -40,8 +40,20 @@ public class Main extends Application {
             AnchorPane ap = fxmlLoader.load();
             Scene scene = new Scene(ap);
             stage.setScene(scene);
-            fxmlLoader.<MainWindow>getController().setDuke(duke);
             stage.show();
+            MainWindow mainWindow = fxmlLoader.<MainWindow>getController();
+
+            mainWindow.showMessageFromDuke(duke.getInitialMessage());
+
+            duke.setFeedbackHandler((str) -> {
+                mainWindow.showMessageFromDuke(str);
+                return null;
+            });
+            mainWindow.setInputHandler((input) -> {
+                duke.handleUserInput(input);
+                return null;
+            });
+
         } catch (IOException e) {
             e.printStackTrace();
         }
