@@ -32,7 +32,7 @@ public class TaskManager {
      *
      * @param task A new task to be added into the list.
      * @throws DuplicateTaskException If there is a duplicate task in the list.
-     * @throws IOException If Duke chat bot fails to save the changes into the database file.
+     * @throws IOException            If Duke chat bot fails to save the changes into the database file.
      */
     public void addTask(Task task) throws DuplicateTaskException, IOException {
         if (tasks.stream().anyMatch(task::equals)) {

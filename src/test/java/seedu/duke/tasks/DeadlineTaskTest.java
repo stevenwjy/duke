@@ -4,35 +4,35 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class DeadlineTest {
+public class DeadlineTaskTest {
     @Test
     public void toString_isNotDone_stringReturned() {
-        String description = "example deadline";
+        String description = "example deadlineTask";
         String deadlineInfo = "next Monday";
         String expectedValue = "[D][X] " + description + " (by: " + deadlineInfo + ")";
-        Deadline deadline = new Deadline(description, deadlineInfo);
+        DeadlineTask deadlineTask = new DeadlineTask(description, deadlineInfo);
 
-        assertEquals(expectedValue, deadline.toString());
+        assertEquals(expectedValue, deadlineTask.toString());
     }
 
     @Test
     public void toString_isDone_stringReturned() {
-        String description = "example deadline";
+        String description = "example deadlineTask";
         String deadlineInfo = "next Monday";
         String expectedValue = "[D][O] " + description + " (by: " + deadlineInfo + ")";
-        Deadline deadline = new Deadline(description, deadlineInfo);
-        deadline.markAsDone();
+        DeadlineTask deadlineTask = new DeadlineTask(description, deadlineInfo);
+        deadlineTask.markAsDone();
 
-        assertEquals(expectedValue, deadline.toString());
+        assertEquals(expectedValue, deadlineTask.toString());
     }
 
     @Test
     public void toString_timeFormat_stringReturned() {
-        String description = "example deadline";
+        String description = "example deadlineTask";
         String deadlineInfo = "02/01/2019 22:10";
         String expectedValue = "[D][X] " + description + " (by: January 2, 2019, 10:10 PM)";
-        Deadline deadline = new Deadline(description, deadlineInfo);
+        DeadlineTask deadlineTask = new DeadlineTask(description, deadlineInfo);
 
-        assertEquals(expectedValue, deadline.toString());
+        assertEquals(expectedValue, deadlineTask.toString());
     }
 }

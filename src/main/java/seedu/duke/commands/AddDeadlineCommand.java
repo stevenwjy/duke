@@ -1,7 +1,7 @@
 package seedu.duke.commands;
 
 import seedu.duke.commands.exceptions.CommandExecutionException;
-import seedu.duke.tasks.Deadline;
+import seedu.duke.tasks.DeadlineTask;
 import seedu.duke.tasks.TaskManager;
 import seedu.duke.tasks.exceptions.DuplicateTaskException;
 
@@ -17,8 +17,8 @@ public class AddDeadlineCommand extends AddTaskCommand {
     }
 
     /**
-     * Add a <code>Deadline</code> task to the list of tasks that are stored both in memory and database file.
-     * Afterwards, this methods triggers a notification to the user that a new <code>Deadline</code> task has
+     * Add a <code>DeadlineTask</code> task to the list of tasks that are stored both in memory and database file.
+     * Afterwards, this methods triggers a notification to the user that a new <code>DeadlineTask</code> task has
      * been successfully added to the task list.
      *
      * @param taskManager A task manager that handles operations to the list of tasks.
@@ -28,13 +28,13 @@ public class AddDeadlineCommand extends AddTaskCommand {
      */
     @Override
     public CommandResult execute(TaskManager taskManager) throws CommandExecutionException {
-        Deadline deadline = new Deadline(taskDescription, deadlineInfo);
+        DeadlineTask deadlineTask = new DeadlineTask(taskDescription, deadlineInfo);
         try {
             int oldNumberOfTasks = taskManager.getNumberOfTasks();
-            taskManager.addTask(deadline);
+            taskManager.addTask(deadlineTask);
             assert (oldNumberOfTasks + 1) == taskManager.getNumberOfTasks();
 
-            return getCommandResult(deadline, taskManager.getNumberOfTasks());
+            return getCommandResult(deadlineTask, taskManager.getNumberOfTasks());
         } catch (DuplicateTaskException e) {
             throw new CommandExecutionException(e.getMessage());
         } catch (IOException e) {

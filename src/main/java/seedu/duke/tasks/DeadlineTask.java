@@ -5,22 +5,21 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 import java.util.Date;
 
-public class Deadline extends Task {
+public class DeadlineTask extends Task {
     private String timeDescription;
 
     /**
-     * Constructor for <code>Deadline</code> that represents one of the possible task types.
+     * Constructor for <code>DeadlineTask</code> that represents one of the possible task types.
      * By default, the task will not be marked as done upon initialization.
      *
-     * @param description     Description of the <code>Deadline</code> task.
+     * @param description     Description of the <code>DeadlineTask</code> task.
      * @param timeDescription An information that specifies the deadline of the task.
-     * @param isDone          A boolean that indicates whether a <code>Deadline</code> task has been done or not.
+     * @param isDone          A boolean that indicates whether a <code>DeadlineTask</code> task has been done or not.
      * @param createdAt       Creation time
      * @param updatedAt       Last update time
      */
-    Deadline(String description, String timeDescription, boolean isDone, Date createdAt, Date updatedAt) {
+    DeadlineTask(String description, String timeDescription, boolean isDone, Date createdAt, Date updatedAt) {
         super(TaskType.DEADLINE, description, isDone, createdAt, updatedAt);
-
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
         DateTimeFormatter targetFormatter = DateTimeFormatter
                 .ofLocalizedDateTime(FormatStyle.LONG, FormatStyle.SHORT);
@@ -37,12 +36,12 @@ public class Deadline extends Task {
     }
 
     /**
-     * Convenient constructor for <code>Deadline</code> that represents one of the possible task types.
+     * Convenient constructor for <code>DeadlineTask</code> that represents one of the possible task types.
      *
-     * @param description     Description of the <code>Deadline</code> task.
+     * @param description     Description of the <code>DeadlineTask</code> task.
      * @param timeDescription An information that specifies the deadline of the task.
      */
-    public Deadline(String description, String timeDescription) {
+    public DeadlineTask(String description, String timeDescription) {
         this(description, timeDescription, false, new Date(), new Date());
     }
 
@@ -51,8 +50,8 @@ public class Deadline extends Task {
         if (!super.equals(other)) {
             return false;
         }
-        Deadline otherDeadline = (Deadline) other;
-        return timeDescription.equals(otherDeadline.timeDescription);
+        DeadlineTask otherDeadlineTask = (DeadlineTask) other;
+        return timeDescription.equals(otherDeadlineTask.timeDescription);
     }
 
     @Override

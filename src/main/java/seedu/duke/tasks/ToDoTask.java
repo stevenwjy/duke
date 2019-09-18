@@ -2,28 +2,27 @@ package seedu.duke.tasks;
 
 import java.util.Date;
 
-public class ToDo extends Task {
+public class ToDoTask extends Task {
     /**
-     * Constructor for <code>ToDo</code> that represents one of the possible task types.
+     * Constructor for <code>ToDoTask</code> that represents one of the possible task types.
      *
-     * @param description Description of the <code>ToDo</code> task.
-     * @param isDone      A boolean that indicates whether a <code>ToDo</code> task has been done or not.
+     * @param description Description of the <code>ToDoTask</code> task.
+     * @param isDone      A boolean that indicates whether a <code>ToDoTask</code> task has been done or not.
      * @param createdAt   Creation time
      * @param updatedAt   Last update time
      */
-    ToDo(String description, boolean isDone, Date createdAt, Date updatedAt) {
+    ToDoTask(String description, boolean isDone, Date createdAt, Date updatedAt) {
         super(TaskType.TODO, description, isDone, createdAt, updatedAt);
     }
 
     /**
-     * Convenient constructor for <code>ToDo</code> that represents one of the possible task types.
+     * Convenient constructor for <code>ToDoTask</code> that represents one of the possible task types.
      *
-     * @param description Description of the <code>ToDo</code> task.
+     * @param description Description of the <code>ToDoTask</code> task.
      */
-    public ToDo(String description) {
+    public ToDoTask(String description) {
         super(TaskType.TODO, description, false, new Date(), new Date());
     }
-
 
     @Override
     public String toString() {
