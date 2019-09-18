@@ -29,6 +29,10 @@ public class FindCommand extends Command {
         try {
             List<Task> foundList = taskManager.findTasks(keyword);
 
+            if (foundList.isEmpty()) {
+                return new CommandResult("There is no such task in your list");
+            }
+
             StringBuilder feedback = new StringBuilder();
             feedback.append("Here are the matching tasks in your list:\n");
             for (int i = 0; i < foundList.size(); ++i) {

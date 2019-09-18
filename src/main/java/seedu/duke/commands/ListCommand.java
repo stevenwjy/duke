@@ -41,8 +41,12 @@ public class ListCommand extends Command {
     public CommandResult execute(TaskManager taskManager) throws CommandExecutionException, InvalidCommandException {
         try {
             List<Task> tasks = taskManager.getTasks();
-            sortTasks(tasks);
 
+            if (tasks.isEmpty()) {
+                return new CommandResult("There is no task in your list");
+            }
+
+            sortTasks(tasks);
             StringBuilder feedback = new StringBuilder();
             feedback.append("Here are the tasks in your list:\n");
             for (int i = 0; i < tasks.size(); ++i) {
