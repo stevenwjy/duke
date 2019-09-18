@@ -24,7 +24,6 @@ public class ToDoTask extends Task {
         super(TaskType.TODO, description, false, new Date(), new Date());
     }
 
-
     @Override
     public String toString() {
         return "[" + getTaskIcon() + "][" + getStatusIcon() + "] " + getDescription();
