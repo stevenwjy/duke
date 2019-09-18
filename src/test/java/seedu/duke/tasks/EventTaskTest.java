@@ -4,25 +4,25 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class EventTest {
+public class EventTaskTest {
     @Test
     public void toString_isNotDone_stringReturned() {
-        String description = "example event";
+        String description = "example eventTask";
         String eventInfo = "random house";
         String expectedValue = "[E][X] " + description + " (at: " + eventInfo + ")";
-        Event event = new Event(description, eventInfo);
+        EventTask eventTask = new EventTask(description, eventInfo);
 
-        assertEquals(expectedValue, event.toString());
+        assertEquals(expectedValue, eventTask.toString());
     }
 
     @Test
     public void toString_isDone_stringReturned() {
-        String description = "example event";
+        String description = "example eventTask";
         String eventInfo = "random Monday";
         String expectedValue = "[E][O] " + description + " (at: " + eventInfo + ")";
-        Event event = new Event(description, eventInfo);
-        event.markAsDone();
+        EventTask eventTask = new EventTask(description, eventInfo);
+        eventTask.markAsDone();
 
-        assertEquals(expectedValue, event.toString());
+        assertEquals(expectedValue, eventTask.toString());
     }
 }

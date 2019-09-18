@@ -21,21 +21,21 @@ class TaskParser {
         Date updateDate = parseTaskDate(components[3]);
 
         if (components[0].equals(TaskType.TODO.getTaskIcon())) {
-            return new ToDo(components[4], taskIsDone, creationDate, updateDate);
+            return new ToDoTask(components[4], taskIsDone, creationDate, updateDate);
 
         } else if (components[0].equals(TaskType.DEADLINE.getTaskIcon())) {
             String[] deadlineInfo = components[4].split(" \\| ", 2);
             if (deadlineInfo.length < 2) {
-                throw new InvalidTaskException("Invalid Deadline task format, doesn't contain time description");
+                throw new InvalidTaskException("Invalid DeadlineTask task format, doesn't contain time description");
             }
-            return new Deadline(deadlineInfo[0], deadlineInfo[1], taskIsDone, creationDate, updateDate);
+            return new DeadlineTask(deadlineInfo[0], deadlineInfo[1], taskIsDone, creationDate, updateDate);
 
         } else if (components[0].equals(TaskType.EVENT.getTaskIcon())) {
             String[] eventInfo = components[4].split(" \\| ", 2);
             if (eventInfo.length < 2) {
-                throw new InvalidTaskException("Invalid Event task format, doesn't contain time description");
+                throw new InvalidTaskException("Invalid EventTask task format, doesn't contain time description");
             }
-            return new Event(eventInfo[0], eventInfo[1], taskIsDone, creationDate, updateDate);
+            return new EventTask(eventInfo[0], eventInfo[1], taskIsDone, creationDate, updateDate);
 
         } else {
             throw new InvalidTaskException("Unsupported task type: " + components[0]);

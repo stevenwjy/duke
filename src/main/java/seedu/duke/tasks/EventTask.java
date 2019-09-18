@@ -2,31 +2,31 @@ package seedu.duke.tasks;
 
 import java.util.Date;
 
-public class Event extends Task {
+public class EventTask extends Task {
     private String timeDescription;
 
     /**
-     * Constructor for <code>Event</code> that represents one of the possible task types.
+     * Constructor for <code>EventTask</code> that represents one of the possible task types.
      * By default, the task will not be marked as done upon initialization.
      *
-     * @param description     Description of the <code>Event</code> task.
+     * @param description     Description of the <code>EventTask</code> task.
      * @param timeDescription An information regarding the event.
-     * @param isDone          A boolean that indicates whether an <code>Event</code> task has been done or not.
+     * @param isDone          A boolean that indicates whether an <code>EventTask</code> task has been done or not.
      * @param createdAt       Creation time
      * @param updatedAt       Last update time
      */
-    Event(String description, String timeDescription, boolean isDone, Date createdAt, Date updatedAt) {
+    EventTask(String description, String timeDescription, boolean isDone, Date createdAt, Date updatedAt) {
         super(TaskType.EVENT, description, isDone, createdAt, updatedAt);
         this.timeDescription = timeDescription;
     }
 
     /**
-     * Convenient constructor for <code>Event</code> that represents one of the possible task types.
+     * Convenient constructor for <code>EventTask</code> that represents one of the possible task types.
      *
-     * @param description     Description of the <code>Event</code> task.
+     * @param description     Description of the <code>EventTask</code> task.
      * @param timeDescription An information regarding the event.
      */
-    public Event(String description, String timeDescription) {
+    public EventTask(String description, String timeDescription) {
         this(description, timeDescription, false, new Date(), new Date());
     }
 
@@ -35,8 +35,8 @@ public class Event extends Task {
         if (!super.equals(other)) {
             return false;
         }
-        Event otherEvent = (Event) other;
-        return timeDescription.equals(otherEvent.timeDescription);
+        EventTask otherEventTask = (EventTask) other;
+        return timeDescription.equals(otherEventTask.timeDescription);
     }
 
     @Override

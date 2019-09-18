@@ -1,7 +1,7 @@
 package seedu.duke.commands;
 
 import seedu.duke.commands.exceptions.CommandExecutionException;
-import seedu.duke.tasks.Event;
+import seedu.duke.tasks.EventTask;
 import seedu.duke.tasks.TaskManager;
 import seedu.duke.tasks.exceptions.DuplicateTaskException;
 
@@ -17,8 +17,8 @@ public class AddEventCommand extends AddTaskCommand {
     }
 
     /**
-     * Add an <code>Event</code> task to the list of tasks that are stored both in memory and database file.
-     * Afterwards, this methods triggers a notification to the user that a new <code>Event</code> task has
+     * Add an <code>EventTask</code> task to the list of tasks that are stored both in memory and database file.
+     * Afterwards, this methods triggers a notification to the user that a new <code>EventTask</code> task has
      * been successfully added to the task list.
      *
      * @param taskManager A task manager that handles operations to the list of tasks.
@@ -28,16 +28,14 @@ public class AddEventCommand extends AddTaskCommand {
      */
     @Override
     public CommandResult execute(TaskManager taskManager) throws CommandExecutionException {
-        Event event = new Event(taskDescription, eventInfo);
+        EventTask eventTask = new EventTask(taskDescription, eventInfo);
         try {
             int oldNumberOfTasks = taskManager.getNumberOfTasks();
-            taskManager.addTask(event);
+            taskManager.addTask(eventTask);
             assert (oldNumberOfTasks + 1) == taskManager.getNumberOfTasks();
 
-            return getCommandResult(event, taskManager.getNumberOfTasks());
-        } catch (DuplicateTaskException e) {
-            throw new CommandExecutionException(e.getMessage());
-        } catch (IOException e) {
+            return getCommandResult(eventTask, taskManager.getNumberOfTasks());
+        } catch (DuplicateTaskException | IOException e) {
             throw new CommandExecutionException(e.getMessage());
         } catch (Exception e) {
             throw new CommandExecutionException("Unknown error occurred while executing 'event' command");

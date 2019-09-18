@@ -2,7 +2,7 @@ package seedu.duke.commands;
 
 import seedu.duke.commands.exceptions.CommandExecutionException;
 import seedu.duke.tasks.TaskManager;
-import seedu.duke.tasks.ToDo;
+import seedu.duke.tasks.ToDoTask;
 import seedu.duke.tasks.exceptions.DuplicateTaskException;
 
 import java.io.IOException;
@@ -15,8 +15,8 @@ public class AddToDoCommand extends AddTaskCommand {
     }
 
     /**
-     * Add a <code>ToDo</code> task to the list of tasks that are stored both in memory and database file.
-     * Afterwards, this methods triggers a notification to the user that a new <code>ToDo</code> task has
+     * Add a <code>ToDoTask</code> task to the list of tasks that are stored both in memory and database file.
+     * Afterwards, this methods triggers a notification to the user that a new <code>ToDoTask</code> task has
      * been successfully added to the task list.
      *
      * @param taskManager A task manager that handles operations to the list of tasks.
@@ -26,7 +26,7 @@ public class AddToDoCommand extends AddTaskCommand {
      */
     @Override
     public CommandResult execute(TaskManager taskManager) throws CommandExecutionException {
-        ToDo todo = new ToDo(taskDescription);
+        ToDoTask todo = new ToDoTask(taskDescription);
         try {
             int oldNumberOfTasks = taskManager.getNumberOfTasks();
             taskManager.addTask(todo);
