@@ -42,7 +42,7 @@ public class Duke {
         try {
             Command command = Command.parseCommand(inputLine);
             CommandResult commandResult = command.execute(taskManager);
-            feedbackHandler.apply(commandResult.feedbackToUser);
+            feedbackHandler.apply(commandResult.getFeedback());
             if (ExitCommand.isExit(command)) {
                 Platform.exit();
             }
