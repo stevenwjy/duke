@@ -9,14 +9,17 @@ public class EventTask extends Task {
      * Constructor for <code>EventTask</code> that represents one of the possible task types.
      * By default, the task will not be marked as done upon initialization.
      *
+     * @param taskID          ID of the task
      * @param description     Description of the <code>EventTask</code> task.
      * @param timeDescription An information regarding the event.
      * @param isDone          A boolean that indicates whether an <code>EventTask</code> task has been done or not.
      * @param createdAt       Creation time
      * @param updatedAt       Last update time
      */
-    EventTask(String description, String timeDescription, boolean isDone, Date createdAt, Date updatedAt) {
-        super(TaskType.EVENT, description, isDone, createdAt, updatedAt);
+    EventTask(long taskID, boolean isDone, Date createdAt, Date updatedAt,
+              String description, String timeDescription) {
+
+        super(taskID, TaskType.EVENT, isDone, createdAt, updatedAt, description);
         this.timeDescription = timeDescription;
     }
 
@@ -27,7 +30,8 @@ public class EventTask extends Task {
      * @param timeDescription An information regarding the event.
      */
     public EventTask(String description, String timeDescription) {
-        this(description, timeDescription, false, new Date(), new Date());
+        super(TaskType.EVENT, description);
+        this.timeDescription = timeDescription;
     }
 
     @Override
@@ -41,13 +45,11 @@ public class EventTask extends Task {
 
     @Override
     public String toString() {
-        return "[" + getTaskIcon() + "][" + getStatusIcon() + "] "
-                + getDescription() + " (at: " + timeDescription + ")";
+        return super.toString() + " (at: " + timeDescription + ")";
     }
 
     @Override
     String getDataRepresentation() {
-        return getTaskIcon() + " | " + getStatusIcon() + " | " + getCreatedAt() + " | " + getUpdatedAt() + " | "
-                + getDescription() + " | " + timeDescription;
+        return super.getDataRepresentation() + " | " + timeDescription;
     }
 }

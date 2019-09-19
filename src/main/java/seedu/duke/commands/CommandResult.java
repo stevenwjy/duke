@@ -1,13 +1,13 @@
 package seedu.duke.commands;
 
-/**
- * Represents the result of a command execution.
- */
 public class CommandResult {
-    public final String feedbackToUser;
+    private final String feedback;
 
-    CommandResult(String feedbackToUser) {
-        assert feedbackToUser != null;
-        this.feedbackToUser = feedbackToUser;
+    CommandResult(String feedback) {
+        this.feedback = feedback;
+    }
+
+    public String getFeedback() {
+        return feedback;
     }
 }
