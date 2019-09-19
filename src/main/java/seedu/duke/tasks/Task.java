@@ -5,29 +5,47 @@ import seedu.duke.tasks.exceptions.InvalidTaskException;
 import java.util.Date;
 
 public abstract class Task {
+    private Long taskID;
     private TaskType type;
-    private String description;
     private boolean isDone;
-
     private Date createdAt;
     private Date updatedAt;
+    private String description;
 
     /**
      * Constructor for <code>Task</code> object.
      *
+     * @param taskID      Task ID of the task
      * @param type        Type of the task.
      * @param description Description of the task.
      * @param isDone      A boolean that indicates whether the task has been done or not.
      * @param createdAt   Creation time
      * @param updatedAt   Last update time
      */
-    Task(TaskType type, String description, boolean isDone, Date createdAt, Date updatedAt) {
+    Task(long taskID, TaskType type, boolean isDone, Date createdAt, Date updatedAt, String description) {
+        this.taskID = taskID;
         this.type = type;
-        this.description = description;
         this.isDone = isDone;
-
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
+        this.description = description;
+    }
+
+    /**
+     * Convenient constructor for <code>Task</code> object. By default, a task will have:
+     * - A random ID that still does not exist in the list of tasks stored by Duke chat bot.
+     * - An unfinished status
+     * - Created and updated time equal to the object initialization time.
+     *
+     * @param type        Type of the task.
+     * @param description Description of the task.
+     */
+    Task(TaskType type, String description) {
+        taskID = TaskIdGenerator.shared.generateAndRegisterNewID();
+        this.type = type;
+        isDone = false;
+        createdAt = updatedAt = new Date();
+        this.description = description;
     }
 
     /**
@@ -46,13 +64,22 @@ public abstract class Task {
         return type == other.type && description.equals(other.description);
     }
 
+    Long getTaskID() {
+        return taskID;
+    }
+
     String getDescription() {
         return description;
     }
 
-    public abstract String toString();
+    public String toString() {
+        return "[" + taskID + "][" + type.getTaskIcon() + "][" + getStatusIcon() + "] " + getDescription();
+    }
 
-    abstract String getDataRepresentation();
+    String getDataRepresentation() {
+        return taskID + " | " + type.getTaskIcon() + " | " + getStatusIcon() + " | " + createdAt
+                + " | " + updatedAt + " | " + description;
+    }
 
     void markAsDone() {
         isDone = true;
@@ -67,11 +94,7 @@ public abstract class Task {
         return updatedAt;
     }
 
-    String getTaskIcon() {
-        return type.getTaskIcon();
-    }
-
-    String getStatusIcon() {
+    private String getStatusIcon() {
         return (isDone ? "O" : "X");
     }
 }

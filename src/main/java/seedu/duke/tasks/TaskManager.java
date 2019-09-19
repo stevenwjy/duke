@@ -5,14 +5,25 @@ import seedu.duke.tasks.exceptions.DuplicateTaskException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class TaskManager {
     private List<Task> tasks;
     private TaskStorage taskStorage;
 
+    /**
+     * Constructor for <code>TaskManager</code>, which handles execution involving tasks that are
+     * stored by Duke chat bot.
+     *
+     * @param filePath File location to save tasks data that are stored by Duke chat bot.
+     * @throws Exception If Duke chat bot fails to load initial data.
+     */
     public TaskManager(String filePath) throws Exception {
         taskStorage = new TaskStorage(filePath);
         tasks = taskStorage.loadTasks();
+
+        List<Long> listIDs = tasks.stream().map(Task::getTaskID).collect(Collectors.toList());
+        TaskIdGenerator.shared.setInitialListIDs(listIDs);
     }
 
     public int getNumberOfTasks() {
@@ -23,8 +34,14 @@ public class TaskManager {
         return tasks;
     }
 
-    public Task getTask(int taskNumber) {
-        return tasks.get(taskNumber - 1);
+    /**
+     * Gets a task with a specified ID.
+     *
+     * @param taskID ID of the task
+     * @return A task with the specified ID.
+     */
+    public Task getTaskWithID(int taskID) {
+        return tasks.get(getTaskIndexWithID(taskID));
     }
 
     /**
@@ -45,18 +62,24 @@ public class TaskManager {
     /**
      * Removes a task from the list of tasks that is stored by Duke chat bot.
      *
-     * @param taskNumber The index of the task in the list that will be removed.
+     * @param taskID The ID of the task in the list that will be removed.
      * @return The task that has been removed.
      * @throws IOException An error if Duke chat bot fails to save the changes to the data file.
      */
-    public Task removeTask(int taskNumber) throws IOException {
-        Task removedTask = tasks.remove(taskNumber - 1);
+    public Task removeTask(long taskID) throws IOException {
+        Task removedTask = tasks.remove(getTaskIndexWithID(taskID));
         taskStorage.saveTasks(tasks);
         return removedTask;
     }
 
-    public void markAsDone(int taskNumber) throws IOException {
-        tasks.get(taskNumber - 1).markAsDone();
+    /**
+     * Marks a task that is stored by Duke chat bot as done.
+     *
+     * @param taskID The ID of the task in the list that will be removed.
+     * @throws IOException An error if Duke chat bot fails to save the changes to the data file.
+     */
+    public void markAsDone(long taskID) throws IOException {
+        tasks.get(getTaskIndexWithID(taskID)).markAsDone();
         taskStorage.saveTasks(tasks);
     }
 
@@ -74,5 +97,14 @@ public class TaskManager {
             }
         }
         return foundList;
+    }
+
+    private int getTaskIndexWithID(long id) {
+        for (int i = 0; i < tasks.size(); i++) {
+            if (tasks.get(i).getTaskID() == id) {
+                return i;
+            }
+        }
+        return -1;
     }
 }

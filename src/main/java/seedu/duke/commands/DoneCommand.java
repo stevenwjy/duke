@@ -31,9 +31,9 @@ public class DoneCommand extends Command {
             assert oldNumberOfTasks == taskManager.getNumberOfTasks();
 
             return new CommandResult("Nice! I've marked this task as done:\n"
-                    + "  " + taskManager.getTask(taskNumber) + "\n");
+                    + "  " + taskManager.getTaskWithID(taskNumber) + "\n");
         } catch (IndexOutOfBoundsException e) {
-            throw new InvalidCommandException("Task number does not exist");
+            throw new InvalidCommandException(e.getMessage());
         } catch (IOException e) {
             throw new CommandExecutionException(e.getMessage());
         } catch (Exception e) {
