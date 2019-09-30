@@ -60,30 +60,12 @@ public abstract class Task {
         return TaskParser.parseTask(str);
     }
 
-    boolean equals(Task other) {
+    public boolean equals(Task other) {
         return type == other.type && description.equals(other.description);
     }
 
-    Long getTaskID() {
+    public Long getTaskID() {
         return taskID;
-    }
-
-    String getDescription() {
-        return description;
-    }
-
-    public String toString() {
-        return "[" + taskID + "][" + type.getTaskIcon() + "][" + getStatusIcon() + "] " + getDescription();
-    }
-
-    String getDataRepresentation() {
-        return taskID + " | " + type.getTaskIcon() + " | " + getStatusIcon() + " | " + createdAt
-                + " | " + updatedAt + " | " + description;
-    }
-
-    void markAsDone() {
-        isDone = true;
-        updatedAt = new Date();
     }
 
     public Date getCreatedAt() {
@@ -92,6 +74,24 @@ public abstract class Task {
 
     public Date getUpdatedAt() {
         return updatedAt;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public String toString() {
+        return "[" + taskID + "][" + type.getTaskIcon() + "][" + getStatusIcon() + "] " + getDescription();
+    }
+
+    public void markAsDone() {
+        isDone = true;
+        updatedAt = new Date();
+    }
+
+    String getDataRepresentation() {
+        return taskID + " | " + type.getTaskIcon() + " | " + getStatusIcon() + " | " + createdAt
+                + " | " + updatedAt + " | " + description;
     }
 
     private String getStatusIcon() {

@@ -8,9 +8,9 @@ import seedu.duke.tasks.TaskManager;
 import java.io.IOException;
 
 public class DeleteCommand extends Command {
-    private int taskNumber;
+    private long taskNumber;
 
-    DeleteCommand(int taskNumber) {
+    DeleteCommand(long taskNumber) {
         this.taskNumber = taskNumber;
     }
 

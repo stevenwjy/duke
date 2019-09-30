@@ -18,7 +18,7 @@ public class Duke {
      * @param filePath Path to the file that stores the tasks data.
      * @throws Exception An error that occurred during initial launch of the chat bot.
      */
-    Duke(String filePath) throws Exception {
+    public Duke(String filePath) throws Exception {
         this.taskManager = new TaskManager(filePath);
         feedbackHandler = (str) -> null;
     }

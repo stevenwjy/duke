@@ -42,7 +42,7 @@ public class DeadlineTask extends Task {
     }
 
     @Override
-    boolean equals(Task other) {
+    public boolean equals(Task other) {
         if (!super.equals(other)) {
             return false;
         }

@@ -7,9 +7,9 @@ import seedu.duke.tasks.TaskManager;
 import java.io.IOException;
 
 public class DoneCommand extends Command {
-    private int taskNumber;
+    private long taskNumber;
 
-    DoneCommand(int taskNumber) {
+    DoneCommand(long taskNumber) {
         this.taskNumber = taskNumber;
     }
 

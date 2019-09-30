@@ -40,7 +40,7 @@ public class TaskManager {
      * @param taskID ID of the task
      * @return A task with the specified ID.
      */
-    public Task getTaskWithID(int taskID) {
+    public Task getTaskWithID(long taskID) {
         return tasks.get(getTaskIndexWithID(taskID));
     }
 
