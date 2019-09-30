@@ -4,6 +4,22 @@ Duke is a chatbot to help people manage their tasks easily.
 You can take note and update it via GUI that behaves that behaves like a
 command line interaction.
 
+## Table of Contents
+
+- [Requirements](#requirements)
+- [Features](#features)
+    - [Interactive user interface](#interactive-user-interface)
+    - [Differentiates your tasks](#differentiates-your-tasks)
+    - [Sort your tasks](#sort-your-tasks)
+    - [Find your tasks](#find-your-tasks)
+    - [Detect duplicates](#detect-duplicates)
+- [Usage](#usage)
+    - [Add a new task](#add-a-new-task)
+    - [Marks task as done](#marks-task-as-done)
+    - [Deletes a task in the list](#deletes-a-task-in-the-list)
+    - [Find tasks](#find-tasks)
+    - [List tasks](#list-tasks)
+
 ## Requirements
 
 - Java 11 or later
@@ -16,7 +32,7 @@ Duke chatbot uses a GUI that gives you interactive feedback for every command
 that you write. It responds as if you are chatting with a real person that
 always available to help you manage your tasks.
 
-![](Ui.png)
+<img src="Ui.png" width="200">
 
 ### Differentiates your tasks
 
@@ -44,10 +60,10 @@ forget that you have added a certain task.
 
 Add a new task into the list of tasks that are stored by Duke chatbot for you.
 
-**Usage example:**
-`todo [description]` <br>
-`deadline [description] /by [byDescription]` <br>
-`event [description] / by [atDescription]`
+**Usage example:** 
+- `todo [description]`
+- `deadline [description] /by [byDescription]`
+- `event [description] / by [atDescription]`
 
 **Example of usage:**
 - `todo watch movie` <br>
@@ -90,7 +106,7 @@ Removes task with id `49924`.
 
 ***
 
-### Find tasks in the list
+### Find tasks
 
 Finds all the tasks that contain a certain keyword in its description.
 
@@ -103,7 +119,7 @@ Find all tasks that contain keyword `homework` in its description.
 
 ***
 
-### Find tasks in the list
+### List tasks
 
 Lists all the tasks that are currently stored by the Duke chat bot.
 
